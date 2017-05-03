@@ -1,0 +1,100 @@
+{
+	"help":{
+		"args":[],
+		"code":[
+			"print('The commands are listed below... \\n' + ' \\n'.join(list(commands.keys())))",
+			"print('Use \\'args\\' to see the required arguments of a command.')",
+		]
+	},
+	"args": {
+		"args": ["Command"],
+		"code": [
+			"if command[1] in commands:",
+			"	print('The argument(s) of ' + command[1] + ' are:')",
+			"	print(' \\n'.join(commands[command[1]]['args']))",
+			"else:",
+			"	print('No such command.')"
+		]
+	},	
+	"go":{
+		"args":["direction"],
+		"code":[
+			"if places[currentRoom]['Inside'] == 'False' and command[1] in places[currentRoom]['Dirs']:",
+			"	if 'RequiredItem' in places[currentRoom]['Dirs'][command[1]]:",
+			"		if places[currentRoom]['Dirs'][command[1]]['RequiredItem'] in inventory:",
+			"			print('Going ' + command[1] + '...')",
+			"			print('You have ' + places[currentRoom]['Dirs'][command[1]]['RequiredItem'] + ' so you can enter.')",
+			"			moveTo(places[currentRoom]['Dirs'][command[1]]['ID'])",
+			"			if JSON['EndPlace'] == currentRoom:",
+			"				print(JSON['WinMess'])",
+			"				win = True",
+			"		else:",
+			"			print(places[currentRoom]['Dirs'][command[1]]['NoItemMess'])",
+			"	else:",
+			"		print('Going ' + command[1] + '...'),"
+			"		moveTo(places[currentRoom]['Dirs'][command[1]]['ID'])",
+			"		if JSON['EndPlace'] == currentRoom:",
+			"			print(JSON['WinMess'])",
+			"			win = True",
+			"else:",
+			"	if places[currentRoom]['Inside'] == 'True':",
+			"		print('You are inside, use \\'leave\\' instead.')",
+			"	else:",
+			"		print('You can\\'t go that way.')"
+		]
+	},
+	"leave":{
+		"args":[],
+		"code":[
+			"if places[currentRoom]['Inside'] == 'True':",
+			"	print('Leaving ' + currentRoom + '...')",
+			"	moveTo(places[currentRoom]['LeaveID'])",
+			"else:",
+			"	print('You are not inside.')"
+		]
+	},
+	"look":{
+		"args":[],
+		"code":[
+			"print(places[currentRoom]['DetailDes'])"
+		]
+	},
+	"inventory":{
+		"args":[],
+		"code":[
+			"print('You have in your inventory...')",
+			"print(' \\n'.join(inventory))"
+		]
+	},
+	"talk": {
+		"args":["Person"],
+		"code":[
+			"if command[1] in places[currentRoom]['Things']:",
+			"	if places[currentRoom]['Things'][command[1]]['Talkable'] == 'True':",
+			"		for i in places[currentRoom]['Things'][command[1]]['Talk']:",
+			"			print('You: ' + i[0])",
+			"			print(command[1] + ': ' + i[1])",
+			"			sleep(3)",
+			"		print('You: Thanks for your time!')",
+			"	else:",
+			"		print(command[1] + 'cannot talk.')",
+			"else:",
+			"	print(command[1] + ' is not here.')"
+		]
+	},
+	"take": {
+		"args": ["Object"],
+		"code": [
+			"if command[1] in places[currentRoom]['Things']:",
+			"	if places[currentRoom]['Things'][command[1]]['Pickupable'] == 'True':",
+			"		inventory.append(command[1])",
+			"		print('Added ' + command[1] + ' to your inventory.')",
+			"	else:",
+			"		print('I cannot pick that up!')",
+			"else:",
+			"	print(command[1] + ' is not here.')"
+		]
+	}
+
+}
+

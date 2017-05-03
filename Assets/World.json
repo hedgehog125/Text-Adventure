@@ -1,0 +1,221 @@
+{
+	"Places":{
+		"Pub": {
+			"Des": "You are in a unusually quiet pub, there is no one around.",
+			"DetailDes": "There are broken bottles all over the floor.",
+			"Inside": "True",
+			"LeaveID": "Street",
+			"Things": {
+				"broken bottles": {
+					"ID": "broken bottles",
+					"Talkable": "True",
+					"Talk": [
+						["Hi, broken bottles how are you?", "We got smashed up by a drunk man!"],
+						["How can you talk?", "The programmer likes making things happen that make no sense!"],
+						["Bye, then.", "Goodbye!"]
+					],
+					"Pickupable": "True"
+
+				}
+			}
+		},
+		"Street": {
+			"Des": "The street is deserted.",
+			"DetailDes": "To your east, there is a pub, and to your west is a path. and north is the police office.",
+			"Inside": "False",
+			"Things": [],
+			"Dirs": {
+				"north": {
+					"ID": "Police Office"
+				},
+				"east" : {
+					"ID":"Pub"
+				},
+				"west": {
+					"ID":"To Mountain Path"
+				}
+			}
+		},
+		"Police Office": {
+			"Des": "You are in the police office.",
+			"DetailDes": "If you want to report someone take them east.",
+			"Inside": "False",
+			"Things": [],
+			"Dirs": {
+				"east": {
+					"ID": "Police office person report",
+					"RequiredItem": "drunk man",
+					"NoItemMess": "You don't have a person to report."
+				},
+				"south": {
+					"ID": "Street"
+				}
+
+			}
+		},
+		"Police office person report": {
+			"Des": "Go east to proceed...",
+			"DetailDes": "Go west to go back.",
+			"Inside": "False",
+			"Things": [],
+			"Dirs": {
+				"east": {
+					"ID": "Police office person and gun report",
+					"RequiredItem": "gun",
+					"NoItemMess": "We want the weapon."
+				},
+				"west": {
+					"ID": "Police Office"
+				}
+			}
+		},
+		"Police office person and gun report": {
+			"Des": "",
+			"DetailDes": "",
+			"Inside": "False",
+			"Things": [],
+			"Dirs": {}
+		},
+		"To Mountain Path": {
+			"Des": "You are on a path that leads to a mountain.",
+			"DetailDes": "To your east there is a street, and the path continues north.",
+			"Inside": "False",
+			"Things": [],
+			"Dirs": {
+				"north": {
+					"ID": "Mountain Path"
+				},
+				"east": {
+					"ID": "Street"
+				}
+			}
+		},
+		"Mountain Path": {
+			"Des": "You are on a path that leads up the mountain.",
+			"DetailDes": "To your west there is a cave, and the path continues up the mountain north. The path goes back south.",
+			"Inside": "False",
+			"Things": [],
+			"Dirs": {
+				"north": {
+					"ID": "Mountain Path #2"
+				},
+				"west": {
+					"ID": "Cave"
+				},
+				"south": {
+					"ID": "To Mountain Path"
+				}
+			}
+		},
+		"Cave": {
+			"Des": "You are in a cave.",
+			"DetailDes": "There is a person hiding in a corner of the cave.",
+			"Inside": "True",
+			"LeaveID": "Mountain Path",
+			"Things": {
+				"person": {
+					"ID": "person",
+					"Talkable": "True",
+					"Talk": [
+						["Why are you here?","There was a drunk man, he walked into the pub, smashed some bottles and fired a gun. We all ran."],
+						["Who's we?","Everyone in town ran and hid."],
+						["Do you know where everyone is?", "No, I don't have a clue. Probably hiding somewhere."],
+						["Do you know where the man is?", "He's still here, somewhere..."]
+					],
+					"Pickupable": "False"
+				}
+			}
+		},
+		"Mountain Path #2": {
+			"Des": "You are on the path up the mountain.",
+			"DetailDes": "To your north there is a cottage, and to the west there is a massive cave.",
+			"Inside": "False",
+			"Things": [],
+			"Dirs": {
+				"north": {
+					"ID": "Cottage"
+				},
+				"west": {
+					"ID": "Massive Cave",
+					"RequiredItem": "torch",
+					"NoItemMess": "I'm not going in there! It's too dark without a light."
+				},
+				"south": {
+					"ID": "Mountain Path"
+				}
+			}
+		},
+		"Cottage": {
+			"Des": "You are in a small cottage.",
+			"DetailDes": "There is a old lady in a rocking chair, and a torch on a table.",
+			"Inside": "True",
+			"LeaveID": "Mountain Path #2",
+			"Things": {
+					"torch": {
+						"ID": "torch",
+						"Talkable": "False",
+						"Pickupable": "True"
+					},
+					"old lady": {
+						"ID": "old lady",
+						"Talkable": "True",
+						"Talk": [
+							["Do you know anything about the drunk man?", "I don't know much, but he's probably hiding in the massive cave."],
+							["How big is the cave?", "No one really knows, very big I would think. You can borrow my torch by the way."]
+						],
+						"Pickupable": "False"
+					}
+				}
+		},
+		"Massive Cave": {
+			"Des": "You are in a massive cave, and it's very dark.",
+			"DetailDes": "The exit is to your east, and it continues west.",
+			"Inside": "False",
+			"Things": [],
+			"Dirs": {
+				"west": {
+					"ID": "Massive Cave #2"
+				},
+				"east": {
+					"ID": "Mountain Path #2"
+				}
+			}
+		},
+		"Massive Cave #2": {
+			"Des": "You are in a massive cave, and it's very dark.",
+			"DetailDes": "Another part of the cave is east and there is light there. There is also a drunk man here.",
+			"Inside": "False",
+			"Things": {
+				"drunk man": {
+					"ID": "drunk man",
+					"Talkable": "True",
+					"Talk": [
+						["Are you the drunk man who was at the pub? (gulp)", "Yes, I am! (he says drunkly)"],
+						["Why did you shoot your gun?", "I was playing darts, that's what you do isn't it?"],
+						["Where's your gun now?", "Not sure, somewhere arround here..."]
+					],
+					"Pickupable": "True"
+				},
+				"gun": {
+					"ID": "gun",
+					"Talkable": "True",
+					"Talk": [
+						["What do you have to say for yourself?", "Not much, I can't talk. I'm a gun!"],
+						["How are you talking now then?", "Oh, the programmer just likes making things happen that make no sense."]
+					],
+					"Pickupable": "True"
+				}
+			},
+			"Dirs": {
+				"east": {
+					"ID": "Massive Cave"
+				}
+
+			}
+		}
+
+	},
+	"StartPlace": "Pub",
+	"EndPlace": "Police office person and gun report",
+	"WinMess": "The drunk man has been punished and has been banned from any more alchohol. \nThe end! \nYou win!"
+}
