@@ -1,1 +1,0 @@
-exec(open("Text adventure.py").read(), globals())
