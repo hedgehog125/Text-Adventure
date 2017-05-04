@@ -4,8 +4,5 @@ AutoUpdate.database = "https://raw.githubusercontent.com/hedgehog125/Text-Advent
 AutoUpdate.path = "AutoUpdate/"
 AutoUpdate.init()
 
-def runFile(file):
-    exec(open(file, "r").read(), globals())
-
 os.chdir("Assets/")
-import Code
+from Assets import Code
