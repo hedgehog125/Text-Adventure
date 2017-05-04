@@ -8,4 +8,4 @@ def runFile(file):
     exec(open(file, "r").read(), globals())
 
 os.chdir("Assets/")
-runFile("Code.py")
+import Code
